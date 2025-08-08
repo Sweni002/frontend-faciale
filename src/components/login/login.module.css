@@ -1,0 +1,152 @@
+
+
+*{
+     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+ box-sizing: border-box;
+}
+
+ .loginH{
+background-color: transparent;
+display: flex;
+width: 100%;
+height:  100px;
+align-items: center;
+
+
+ }
+.login1 {
+     margin-left: 109px;
+     margin-top: 30px;
+    width:77px;
+    height:  68px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: space-between;
+}
+
+.login1 img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    align-items: center;        /* centre verticalement */
+    justify-content: flex-end;    /* centre horizontalement */
+    gap: 35px; 
+    height: 60vh;              /* prend toute la hauteur de la fenêtre */
+    width: 90vw;               /* prend toute la largeur de la fenêtre */
+    box-sizing: border-box;     /* au cas où padding/margin */
+}
+
+
+.contentLogin {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+
+}
+.contentLogin p{
+    font-size: 20px;
+    color: #adacac;
+    font-weight: bold;
+    letter-spacing: 3px;
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);  /* Contour sombre pour plus de contraste */
+ 
+}
+
+.contentLogin h1{
+    color: #259eb6;
+  
+    font-size:60px;
+ letter-spacing: 3px;         /* % remplacé par px (plus approprié ici) */  /* Met le texte en majuscules */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);  /* Contour sombre pour plus de contraste */
+   
+}
+
+.card {
+  width: 400px;
+  background-color: white;
+     animation: fadeIn 1s ease-in-out;
+  padding: 30px;
+  border-radius: 28px;
+  box-shadow: 0px 10px 10px  rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 5px; 
+}
+.left {
+  text-align: left;
+}
+.left h2{
+    
+    color: rgb(27, 82, 114);
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+.form{
+    display: flex;
+  flex-direction: column;
+  gap: 4px;;
+    
+}
+
+.input1{
+    width: 100%;
+}
+.oublie  p{
+ font-size: 18px;
+ color: rgb(59, 130, 211);
+}
+
+.oublie {
+    margin-right: 10px;
+
+  text-align: right;
+  margin-top: 12px;
+  font-size: 14px;
+  color: #1B6979;
+  cursor: pointer;
+}
+
+.btn {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.imgAcc {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    
+}
+
+.imgAcc img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+/* Supprimer le fond jaune/orange de l'autofill du navigateur */
+input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: black !important;
+  transition: background-color 9999s ease-in-out 0s;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

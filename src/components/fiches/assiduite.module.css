@@ -1,0 +1,772 @@
+.personnels {
+    margin-top: 30px;
+    margin-left: 70px;
+ 
+width: 93%;
+display: flex;
+flex-direction: column;
+}
+
+.break{
+    display: flex;
+    align-items: center;
+    width: 31%;
+      justify-content: space-between;
+     
+}
+
+.listes h1{
+    color: rgb(49, 47, 47);
+    font-size: 26px;
+     
+}
+
+.listes {
+    margin-right: 10px;
+}
+
+.cardDivision {
+   animation: fadeIn 1s ease-in-out;
+    margin-top: 30px;
+    align-items: center;
+    justify-content: center;
+    
+    display: flex;
+    width: 100%;
+    background-color: #f5f9fa ;
+    border-color:  #1B6979;
+    border-radius: 25px;box-shadow: 0 2px 2px #E0F9FE;
+    padding: 17px;
+  user-select: none;
+
+}
+
+.btn1{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btn1 h2{
+    font-size: 18px;
+    color: #676767;
+}
+
+.btn1:hover{
+    background-color: rgba(234, 241, 241, 0.432);
+}
+
+ 
+.cardTab {
+    margin-top: 40px;
+     width: 100%;
+     background-color: white;
+     border: 1px solid rgba(0,0,0,0.1);
+     border-radius: 20px;
+     padding: 10px;
+   display: flex;
+   flex-direction: column;
+align-items: flex-start;
+
+}
+
+.searchBar {
+    display: flex;
+    padding: 15px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+.flexible {
+    width:  40%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+}
+.pdf{
+    position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+ border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.1); 
+ box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+ overflow: hidden;
+cursor: pointer;
+ padding: 17px;
+  
+}
+.iconCircleBtn {
+  border: none;
+  overflow: hidden;
+  background-color: transparent;
+  border-radius: 50%;
+  padding: 7px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  width: 35px;
+    animation: fadeIn 1s ease-in-out;
+
+}
+
+.iconCircleBtn:hover {
+  background-color: #1f7181;
+  transform: scale(1.1);
+}
+.pdf:hover{
+     border: 1px solid #14535f; 
+}
+
+
+.pdf i{
+  padding-left: 1px;
+   color: #1B6979;
+    font-size: 21px;
+}
+
+
+
+.searchB {
+    width: 18%;
+    background-color: #e7edee;
+    border-radius: 8px;
+    border: 3px solid transparent;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+    margin-right: 35px;
+}
+
+.searchB input {
+    font-size: 18px;
+    border: none;
+    background-color: transparent;
+     outline: none; 
+  box-shadow: none;
+  padding: 5px;
+  width: 78%;
+  color:  #676767;
+}
+
+.searchB i{
+    padding-right: 15px;
+    color: #14535f;
+    font-size: 22px;
+}
+
+.searchB:hover{
+    border: 3px solid  #14535f;
+}
+
+.tableau {
+    margin-top: 10px;
+    width: 100%;
+      padding-right: 30px;
+    padding-left: 20px;
+    height: 50vh;
+    user-select: none;
+}
+
+.largeRow {
+  font-size: 18px;
+  height: 60px;
+}
+
+.largeRow td {
+  padding: 18px !important;
+  cursor: pointer;
+}
+
+.largeHeader th {
+  font-size: 17px;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: center !important;
+  color: #6d6b6b !important; /* gris clair */
+  background-color: #f5f5f5 !important;}
+
+
+/* personnels.module.css */
+.iconCircle {
+  background-color: white;
+  border-radius: 50%;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+.iconCircles {
+  background-color: white;
+  border-radius: 50%;
+  padding: 11px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.iconCircle:hover {
+  transform: scale(1.2);
+}
+.iconCircles:hover {
+  transform: scale(1.2);
+}
+
+
+.supp{
+  margin-top: 7px;
+  display: flex;
+  align-items: center;
+width: 100%;
+justify-content: flex-end;
+gap: 20px;
+
+
+}
+.supp1 button{
+  border:  none;
+  overflow: hidden;
+  padding: 15px;
+  font-size: 17px;
+  border-radius: 50%;
+  background-color: transparent;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.supp1 button:hover{
+ background-color: #e4f4f7;
+}
+
+.supp2 button{
+    border:  none;
+  overflow: hidden;
+  padding: 17px;
+  font-size: 18px;
+  border-radius: 50%;
+  background-color:transparent;
+  font-weight: bold;
+  cursor: pointer;
+  color:#4C8995;
+     transition: opacity 0.2s ease;
+}
+
+.supp2 button:hover{
+  background-color: #e4f4f7;
+}
+
+.supp2 button:active {
+  opacity: 0.6;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.dialog {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height:  67px;
+     padding-left: 1px;
+    background-color: transparent;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.dialog input {
+    width: 75%;
+    border: none;
+    padding: 0px;
+    font-size: 20px;
+    background-color: transparent;
+     outline: none; /* empêche la bordure orange */
+  box-shadow: none;
+    
+}
+.dialog i{
+    font-size: 23px;
+
+}
+
+.dialog:hover {
+    border: 2px solid #259eb6;
+}
+
+
+
+.resultat{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+}
+
+.liste1{
+width: 98%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+cursor: pointer;
+  margin-bottom: 30px; /* ou la valeur que tu souhaites */
+
+}
+
+.liste1:hover{
+   color: #1f7181;
+    
+}
+.liste2 h3:hover{
+   color: #1f7181; 
+}
+
+.liste2 p:hover{
+   color: #1f7181; 
+}
+.liste2{
+    display: flex;
+    flex-direction: column;
+    gap:  10px;
+    align-items: flex-start;
+    justify-content:center;
+     
+}
+.liste2 h3{
+    font-size: 19px;
+    
+}
+.liste2 p{
+
+    font-size: 18px;
+    color: gray;
+}
+
+.liste1 i{
+    font-size: 18px;
+    
+}
+.debut{
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
+    border-radius: 8px;
+     background-color: transparent;
+     padding-left: 18px;
+     padding: 16px;
+     border: 1px solid rgba(0,0,0,0.1);
+     cursor: pointer;
+}
+
+.debut:hover{
+    border: 1px solid #14535f;
+}
+.debut label{
+    color:  #676767;
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 0.4px;
+      animation: fadeIn 1s ease-in-out;
+      margin-top: 4px;
+ user-select: none;
+}
+
+
+
+.matricule{
+   display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
+    border-radius: 8px;
+     background-color: transparent;
+     padding-left: 18px;
+     padding: 16px;
+     border: 1px solid rgba(0,0,0,0.1);
+     cursor: pointer;
+       animation: fadeIn 1s ease-in-out;
+
+}
+
+.matricule:hover{
+    border: 1px solid #14535f;
+}
+.matricule label{
+    color:  #676767;
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 0.4px;
+      animation: fadeIn 1s ease-in-out;
+      margin-top: 4px;
+ user-select: none;
+}
+
+.matricule i{
+    color: #1B6979;
+  font-size: 14px;
+ 
+}
+
+.fin{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 190px;
+    border-radius: 8px;
+     background-color: transparent;
+     padding-left: 18px;
+     padding: 15px;
+     border: 1px solid rgba(0,0,0,0.1);
+     cursor: pointer;
+}
+
+.fin:hover{
+    border: 1px solid #14535f;
+}
+.fin label{
+    color:  #676767;
+    font-size: 18px;
+}
+
+.fin i{
+    color: #1B6979;
+  font-size: 20px;
+}
+
+.debut i{
+    color: #1B6979;
+  font-size: 14px;
+  margin-left: 12px;
+}
+
+.trier {
+     animation: fadeIn 1s ease-in-out;
+    
+   display: flex;
+
+}
+.trier button{
+ background-color: transparent;
+ border: 1px solid #2DAC60;
+ box-shadow: none;
+ width: 210px;
+ padding: 14px;
+ border-radius: 8px;
+ cursor: pointer;
+ transition: all 0.3s ease;
+
+}
+.btn10{
+   width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+
+}
+.trier span{
+    font-size: 18px;
+    color: #2DAC60;
+letter-spacing: 0.4px;
+}
+
+.trier i{
+    font-size: 18px;
+    color: #2DAC60;
+}
+
+/* Hover : amélioration UX */
+.trier button:hover {
+    transform: translateY(-1px); /* petit soulèvement */
+ }
+
+ .borderedLeft {
+  border-left: 1px solid #e0e0e0;  /* gris clair et doux */
+  background-color: white;       /* léger fond pour accentuer la colonne */
+}
+
+.shadowedTable {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+ overflow: visible;
+ height: auto;
+  background-color: white;
+  padding: 16px;
+    animation: fadeIn 1s ease-in-out;
+
+}
+.hiddenMonthInput {
+  opacity: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+
+@media (max-width : 1780px) {
+    .listes h1{
+      font-size: 21px;
+    }
+   
+    .break{
+      width: 29%;
+    }
+    .shadowedTable{
+      padding: 0px;
+      margin: 0;
+    }
+    .searchB{
+      width: auto;
+    }
+    .searchB input{
+      width: 100%;
+    }
+ 
+}
+
+@media (max-width : 1400px) {
+   .personnels{
+    margin-top: 4px;
+    margin-left: 0;
+    padding-left: 20px;
+   }
+  .break{
+    width: 30%;
+  }
+ 
+  .listes h1{
+    font-size:18px;
+  }
+  .btn1{
+    width: 100%;
+  }
+  .btn1 h2{
+    font-size: 14px;
+  }
+  .chiffre{
+    padding: 4px;
+    width: 30px;
+  }
+  .chiffre h2{
+    font-size: 14px;
+  }
+  .cardDivision{
+    margin-left: 35px;
+    margin-top: 14px;
+    padding: 5px;
+    width: 100%;
+    padding-bottom: 20px
+  }
+  .cardTab{
+    padding: 4px;
+    margin-left: 37px;
+    margin-top: 20px;
+  }
+  .flexible{
+    width: 30%;
+  }
+  .debut{
+    width: 150px;
+    padding: 10px;
+  }
+  .debut label{
+    font-size: 14px;
+  }
+  .debut i{
+    font-size: 15px;
+  }
+  .trier {
+    width: 150px;
+  }
+  .trier button{
+    padding: 10px;
+  }
+  .trier span{
+    font-size: 14px;
+  }
+  .trier i{
+       font-size: 14px;
+  }
+     .searchB{
+      width: auto;
+      padding: 10px;
+    }
+    .searchB input{
+      width: 100%;
+      font-size: 14px;
+    }
+    .searchB i{
+      font-size: 15px;
+    }
+    .shadowedTable{
+      box-shadow: none;
+    }
+    .tableau{
+  height:auto
+    }
+    .largeRow{
+      font-size: 13px;
+    }
+  .searchB {
+      border: 2px solid transparent;
+  } 
+  .searchB:hover{
+      border: 2px solid #1B6979;
+  }
+
+.largeHeader th {
+  font-size: 13px;
+}
+}
+
+
+
+
+.filtreContainer {
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 24px;
+  padding: 18px 39px 18px 35px;
+  background-color: transparent;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+ 
+  display: none;
+  align-items: center;
+
+  justify-content: space-between; /* <-- ici */
+
+  flex-wrap: nowrap; /* ou wrap selon besoin */
+
+  animation: fadeIn 1s ease-in-out;
+}
+
+.filtreGroup {
+  display: flex;
+  gap: 20px;
+  width: 100%; /* ou max-width: 600px; si tu préfères */
+  justify-content: space-around; /* espace entre les filtres */
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.filtreItem {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.filtreLabel {
+    font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #676767;
+}
+
+.filtreInput {
+    cursor: pointer;
+  padding: 17px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  min-width: 160px;
+  font-size: 15px;
+  user-select: none;
+}
+
+.filtreInput:hover{
+    border: 1px solid #14535f;
+}
+.btnExport {
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  letter-spacing: 1px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  background-color: #1B6979;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  transition: background-color 0.3s ease;
+}
+
+.btnExport:hover {
+  background-color: #15545a;
+}
+
+.btnFiltre {
+  margin-top: 38px;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  padding: 16px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  background-color: #1B6979;
+  transition: background-color 0.3s ease;
+}
+
+.btnFiltre:hover {
+  background-color: #15545a;
+
+}
+
+.btnReset {
+  margin-top: 38px;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  padding: 16px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #ccc;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.btnReset:hover {
+  background-color: #aaa;
+}
+
+.MuiInputBase-root {
+  min-width: 0 !important;
+}
+
+.MuiInputBase-input {
+  padding: 4px 6px !important;
+  min-width: 0 !important;
+}

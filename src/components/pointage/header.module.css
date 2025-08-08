@@ -1,0 +1,428 @@
+
+*{
+     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+}
+.darkNavbar {
+  background-color: #222121 !important;
+  color: white !important;
+
+}
+
+
+.darkNavbar ul li {
+  color: rgb(224, 224, 224) !important;
+}
+.darkNavbar ul li:hover{
+    color:  #1f7181 !important;
+}
+
+.darkIcon {
+  color: rgb(224, 224, 224) !important;
+}
+
+.darkIcon:hover{
+      color:  #1f7181 !important;
+}
+/* Par défaut */
+.nom h3, .nom p {
+  margin: 0;
+  color: black;
+}
+
+/* Mode sombre */
+.nomDark h3,
+.nomDark p {
+  color:rgb(224, 224, 224) !important;
+}
+.darkText {
+  color: rgb(224, 224, 224) !important;
+}
+
+.darkText:hover{
+    color:  #14535f !important;
+}
+
+.darkDropdown {
+  background-color:  #222121 !important;
+  color: white !important;
+  box-shadow: 0 4px 10px rgba(255,255,255,0.2) !important;
+}
+.iconDark {
+  color: white !important;
+}
+
+.iconDark:hover{
+      color:  #14535f !important;
+}
+
+.navbar {
+    width: 100%;
+    height:  100px;
+    top : 0 ;
+    left: 0;
+    background-color:white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed;
+  /*  */  z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+   padding:  0; 
+     transition: background-color 0.3s ease;
+}
+
+.logo{
+    margin-left: 25px;
+         width:70px;
+    height:  62px;
+    display: flex;
+    align-items: center;
+    
+}
+
+.logo img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.menu {
+    width:  50%;
+     padding-left: 30px;
+}
+.menu ul{
+ display: flex;
+ align-items: center;
+ justify-content: space-around;
+ list-style-type: none;
+}
+
+.menu ul li{
+    color: rgb(17, 17, 88);
+     font-size: 20px;
+    cursor: pointer;
+     transition:all 1.1 ease;
+    font-weight: bold;
+}
+
+.menu ul li:hover{
+    color: #259eb6;
+   transform: translateY(-2px);
+ 
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon i{
+font-size: 14px;
+}
+
+.compte {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width:24%;
+    padding-right: 20px;
+}
+
+.avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+}
+.nom{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap:  10px;
+}
+
+
+.nom h3{
+    font-size:20px;
+    color: black;
+      animation: fadeIn 1s ease-in-out;
+
+}
+
+.nom p{
+    font-size: 16px;
+    color: #b3afaf;
+}
+
+
+
+.compte i{
+    font-size: 23px;
+    color: black;
+    cursor: pointer;
+}
+.compte i:hover {
+       color: #259eb6;
+
+}
+
+.gauche {
+    padding-left: 35px;
+    display: flex;
+    align-items: center;
+
+    justify-content: center;
+}
+
+.dropdown {
+  position: absolute;
+  background-color: white;
+  top: 60px;
+  padding: 10px;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 180px;
+    animation: fadeIn 0.3s ease-in-out;
+
+}
+
+.dropdown p {
+    font-size: 18px;
+  margin: 0;
+  padding: 8px 12px;
+ color: rgb(17, 17, 88);
+    font-weight: 200;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.dropdown p:hover {
+ color: #259eb6;
+ transform: translateY(-1px);
+}
+
+.dialog {
+
+ 
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height:  67px;
+    padding: 7px;
+    padding-left: 1px;
+    background-color: transparent;
+    border-radius: 10px;
+    border: 3px solid rgba(0,0,0,0.1);
+}
+
+.dialog input {
+    width: 70%;
+    border: none;
+    padding: 0px;
+    font-size: 20px;
+    background-color: transparent;
+     outline: none; /* empêche la bordure orange */
+  box-shadow: none;
+    
+}
+.dialog i{
+    font-size: 23px;
+
+}
+
+.dialog:hover {
+    border: 3px solid #259eb6;
+}
+
+.liste{
+    margin-top: 7px;
+ 
+     
+}
+
+.resultat{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+}
+
+.liste1{
+width: 98%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+cursor: pointer;
+}
+
+.liste1:hover{
+   color: #1f7181;
+    
+}
+.liste2 h3:hover{
+   color: #1f7181; 
+}
+
+.liste2 p:hover{
+   color: #1f7181; 
+}
+.liste2{
+    display: flex;
+    flex-direction: column;
+    gap:  10px;
+    align-items: flex-start;
+    justify-content:center;
+     
+}
+.liste2 h3{
+    font-size: 21px;
+    color: black;
+}
+.liste2 p{
+
+    font-size: 18px;
+    color: gray;
+}
+
+.liste1 i{
+    font-size: 18px;
+    
+}
+.button1 button {
+   padding: 16px ;
+    padding-left: 23px;
+    padding-right: 20px;
+    outline: none;
+    border: none;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #1B6979;
+    box-shadow: 0 7px 7px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+.button1 button:hover {
+    background-color: #14535f;
+    
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width : 1780px) {
+  .menu ul li{
+    font-size: 18px;
+  }
+  .navbar{
+    height: 85px;
+  }
+    .logo{
+        width: 40px;
+        height: 45px;
+    }
+    .icon i{
+        font-size: 13px;
+    }
+    .dropdown p{
+        font-size: 16px;
+    }
+    .nom h3{
+        font-size: 17px;
+    }
+    .nom p{
+        font-size: 15px;
+    }
+    .compte i{
+        font-size: 19px;
+    }
+    .compte {
+        width: 28%;
+    }
+    .liste1 h3 {
+        font-size: 18px;
+    }
+    .liste1 p{
+        font-size:17px;
+    }
+}
+@media (max-width : 1410px) {
+    .navbar{
+        height: 75px;
+    }
+    .dropdown p{
+        font-size: 15px;
+    }
+    .icon i{
+        font-size: 10px;
+    }
+    .menu{
+        width: 50% ;
+        padding-left: 0;
+    } 
+    .menu ul li{
+        font-size: 15px;
+    }
+    .compte{
+        width: 30%;
+    }
+    .nom h3{
+        font-size: 15px;
+    }
+    .nom p{
+        font-size: 13px;
+    }
+    .compte i{
+    font-size: 17px;
+    }
+    .logo{
+        margin-left: 0;
+    }
+    .button1 button{
+padding: 10px;
+    }
+    .button1 span{
+        font-size: 14px;
+    }
+    .button1 i{
+        font-size: 14px;
+    }
+}
+@media (max-width : 1200px) {
+    
+    .menu{
+        width: 80%;
+    }
+    .compte{
+        width: 40%;
+        padding: 0;
+        margin: 0;
+    }
+    .compte i{
+        display: none;
+    }
+    
+}
+
