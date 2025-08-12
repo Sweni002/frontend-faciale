@@ -12,6 +12,7 @@ import AjoutAuto from './components/content/AjoutAuto.jsx';
 import Autorisations from './components/content/Autorisations.jsx';
 import ModAuto from './components/content/ModAuto.jsx';
 import Assiduites from './components/fiches/Assiduites.jsx';
+import Tableau from './components/pointage/Tableau.jsx';
 const LazyPersonnels = lazy(() =>
   new Promise((resolve) =>
      resolve(import('./components/content/Personnels.jsx'))
@@ -42,6 +43,7 @@ function App() {
           <Route path="personnel" element={<LazyPersonnels />} >
                  </Route>
           <Route path="autorisation" element={<Autorisations />} />
+            <Route path="tableau_bord" element={<Tableau />} />
               <Route path="assiduite" element={<Assiduites />} />
     
             <Route path='ajout_auto' element={<AjoutAuto />} />

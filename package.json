@@ -19,12 +19,15 @@
     "@mui/styled-engine-sc": "^7.2.0",
     "@mui/x-date-pickers": "^8.9.0",
     "antd": "^5.26.4",
+    "apexcharts": "^5.3.2",
     "date-fns": "^4.1.0",
     "dayjs": "^1.11.13",
     "notistack": "^3.0.2",
     "react": "^19.1.0",
+    "react-apexcharts": "^1.7.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.3",
+    "recharts": "^3.1.2",
     "styled-components": "^6.1.19"
   },
   "devDependencies": {

@@ -522,7 +522,7 @@ const columns = [
                 </div>
                 </div>
           <div className={styles.searchB}>
-            <input type="text" placeholder='Rechercher personnels ...' 
+            <input type="text" placeholder='Rechercher ...' 
               value={searchText}
   onChange={e => setSearchText(e.target.value)}/>
             <i className="fa-solid fa-magnifying-glass"></i>

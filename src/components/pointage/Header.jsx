@@ -156,6 +156,10 @@ const handleLogout = async () => {
   const openPerso =()=>{
     navigate("/global/personnel")
   }
+
+   const openTab =()=>{
+    navigate("/global/tableau_bord")
+  }
  const openPresences =()=>{
     navigate("/global/fiche_presence")
   }
@@ -186,7 +190,7 @@ const handleLogout = async () => {
     </div>
         <div className={styles.menu}>
    <ul>
-    <li>Tableau de bord</li>
+    <li onClick={openTab}>Tableau de bord</li>
     <li onClick={openPerso}>Personnels</li>
     <li>
  <div

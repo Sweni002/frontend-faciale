@@ -783,7 +783,7 @@ fontSize : 16,color :"black"
   <div className={styles.dialog}>
     <input
       type="text"
-      placeholder="Rechercher..."
+      placeholder=""
       value={searchPers}
       onChange={(e) => setSearchPers(e.target.value)}
     />
@@ -841,7 +841,7 @@ fontSize : 16,color :"black"
     
       </div>
           <div className={styles.searchB}>
-            <input type="text" placeholder='Rechercher personne...' 
+            <input type="text" placeholder='Recherccher ...' 
               value={searchText}
   onChange={e => setSearchText(e.target.value)}/>
             <i className="fa-solid fa-magnifying-glass"></i>
