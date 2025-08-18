@@ -61,14 +61,22 @@ flex-direction: column;
     padding: 13px;
     border-radius: 4px;
     cursor: pointer;
+     transition: all 0.3s ease-in-out; /* transition fluide pour tous les effets */
+
 }
 .btn1 h2{
     font-size: 18px;
     color: #676767;
-}
+     transition: color 0.3s ease-in-out; /* transition de couleur du texte */
 
+}
+.btn1:hover h2{
+    color: #1f7181; /* changement de couleur texte au survol */
+}
 .btn1:hover{
-    background-color: rgba(234, 241, 241, 0.432);
+    background-color: rgba(234, 241, 241, 0.6); /* hover plus visible */
+    transform: translateY(-3px) scale(1.03); /* effet “lift” et léger zoom */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15); /* ombre pour effet flottant */
 }
 .chiffre {
     width: 40px;
@@ -108,25 +116,29 @@ align-items: flex-start;
     align-items: center;
     justify-content: space-between;
 }
-
 .searchBar button {
-    padding: 14px ;
-    padding-left: 33px;
-    padding-right: 30px;
-    outline: none;
-    border: none;
-    overflow: hidden;
-    border-radius: 8px;
-    background-color: #1B6979;
-    box-shadow: 0 7px 7px rgba(0,0,0,0.1);
-    cursor: pointer;
-
+  padding: 14px 30px 14px 33px;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  background-color: #1B6979;
+  box-shadow: 0 7px 7px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.3s ease; /* transition pour hover et box-shadow */
 }
 
+/* effet au hover */
 .searchBar button:hover {
-    background-color: #14535f;
-    
+  background-color: #14535f;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25); /* glow plus marqué */
 }
+
+/* effet de “retour” quand la souris quitte */
+.searchBar button:active,
+.searchBar button:not(:hover) {
+  box-shadow: 0 7px 7px rgba(0,0,0,0.1); /* retourne à l’état normal */
+}
+
 
 .searchB {
     width: 18%;
@@ -327,7 +339,7 @@ gap: 20px;
     margin-top: 14px;
     padding: 5px;
     width: 100%;
-    
+
   }
   .cardTab{
     padding: 4px;

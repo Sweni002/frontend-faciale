@@ -194,40 +194,31 @@ const handleLogout = async () => {
    <ul>
     <li onClick={openTab}>Tableau de bord</li>
     <li onClick={openPerso}>Personnels</li>
-    <li>
- <div
-  className={styles.icon}
-  onMouseEnter={() => setisHovered(true)}
-  onMouseLeave={() => setisHovered(false)}
->
-  <span>Fiches</span>
-  {isHovered ? (
-  <i className={`fa-solid fa-chevron-up ${darkMode ? styles.iconDark : ""}`}></i>
-) : (
-  <i className={`fa-solid fa-chevron-down ${darkMode ? styles.iconDark : ""}`}></i>
-)}
-
-{isHovered && (
+<li>
   <div
-    className={`${styles.dropdown} ${darkMode ? styles.darkDropdown : ""}`}
+    className={styles.iconWrapper} // englobe Fiches + dropdown
     onMouseEnter={() => setisHovered(true)}
     onMouseLeave={() => setisHovered(false)}
   >
-  <p
-  onClick={openPresences}
-  className={darkMode ? styles.darkText : ''}
->
-  Fiche de présence
-</p>
-<p className={darkMode ? styles.darkText : ''} onClick={openAssd} >
-  Fiche d'assiduités
-</p>
+    <span className={darkMode ? styles.darkText : ''}>Fiches</span>
+    {isHovered ? (
+      <i className={`fa-solid fa-chevron-up ${darkMode ? styles.iconDark : ""}`}></i>
+    ) : (
+      <i className={`fa-solid fa-chevron-down ${darkMode ? styles.iconDark : ""}`}></i>
+    )}
 
+    {isHovered && (
+      <div className={`${styles.dropdown} ${darkMode ? styles.darkDropdown : ""}`}>
+        <p onClick={openPresences} className={darkMode ? styles.darkText : ''}>
+          Fiche de présence
+        </p>
+        <p onClick={openAssd} className={darkMode ? styles.darkText : ''}>
+          Fiche d'assiduités
+        </p>
+      </div>
+    )}
   </div>
-)}
-
-</div>
-    </li>
+</li>
     <li onClick={openConge}>Autorisations</li>
    </ul>
        </div>

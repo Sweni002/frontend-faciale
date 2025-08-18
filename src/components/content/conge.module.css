@@ -109,23 +109,28 @@ align-items: flex-start;
 }
 
 .searchBar button {
-    padding: 14px ;
-    padding-left: 33px;
-    padding-right: 30px;
-    outline: none;
-    border: none;
-    overflow: hidden;
-    border-radius: 8px;
-    background-color: #1B6979;
-    box-shadow: 0 7px 7px rgba(0,0,0,0.1);
-    cursor: pointer;
-
+  padding: 14px 30px 14px 33px;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  background-color: #1B6979;
+  box-shadow: 0 7px 7px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.3s ease; /* transition pour hover et box-shadow */
 }
 
+/* effet au hover */
 .searchBar button:hover {
-    background-color: #14535f;
-    
+  background-color: #14535f;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25); /* glow plus marqué */
 }
+
+/* effet de “retour” quand la souris quitte */
+.searchBar button:active,
+.searchBar button:not(:hover) {
+  box-shadow: 0 7px 7px rgba(0,0,0,0.1); /* retourne à l’état normal */
+}
+
 
 .searchB {
     width: 18%;

@@ -114,6 +114,7 @@
 }
 
 .icon {
+    
     display: flex;
     align-items: center;
     gap: 10px;
@@ -137,7 +138,20 @@ font-size: 14px;
     justify-content: center;
     gap: 12px;
     cursor: pointer;
+      position: relative; /* nécessaire pour ::after */
+
+  transition: all 0.3s ease;
 }
+ .avatar:after{
+      content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    left: 0;
+    bottom: -38px;
+    background-color: #259eb6;
+    transition: width 0.3s ease;
+ }
 .nom{
     margin-top: 5px;
     display: flex;
@@ -179,24 +193,61 @@ font-size: 14px;
     justify-content: center;
 }
 
+/* parent qui contient le texte et le dropdown */
+.iconWrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* dropdown caché par défaut */
 .dropdown {
+  display: none; /* caché */
   position: absolute;
+  top: 28px;
+  left: 0;
   background-color: white;
-  top: 60px;
-  padding: 10px;
-  padding-bottom: 15px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 10px 20px 15px 20px;
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+  min-width: 180px;
   z-index: 999;
-  display: flex;
   flex-direction: column;
   gap: 10px;
-  min-width: 180px;
-    animation: fadeIn 0.3s ease-in-out;
-
+  animation: fadeIn 0.3s ease-in-out;
 }
+
+.iconWrapper:hover .dropdown {
+  display: flex; /* flex-direction: column si tu veux */
+}
+
+
+
+/* Optionnel : styliser le texte et l'icône */
+.iconWrapper span {
+  font-weight: bold;
+  color: rgb(17, 17, 88);
+}
+.iconWrapper span:hover{
+    color: #259eb6 ;
+    transform: translateY(-1px);
+}
+.iconWrapper i {
+  font-size: 14px;
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+  position: relative;
+  top: -2px; /* décaler vers le haut, ajuste la valeur selon ton besoin */
+}
+
+
+/* Pour l'icône qui change de direction */
+.iconWrapper:hover i {
+  transform: rotate(180deg);
+}
+
+
+
 
 .dropdown p {
     font-size: 18px;
