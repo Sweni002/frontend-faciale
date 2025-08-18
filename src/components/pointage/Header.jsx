@@ -48,12 +48,14 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     },
   },
 }));
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiPaper-root": {
     backgroundColor: "white",
     borderRadius: "30px",
     padding: theme.spacing(4),
     width: "100%",
+    
     maxWidth: "500px",
   },
     "& .MuiDialog-container": {
