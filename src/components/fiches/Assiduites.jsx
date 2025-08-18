@@ -63,7 +63,7 @@ const Assiduites = () => {
    const navigate2=useNavigate()
    const [assiduiteAll, setAssiduiteAll] = useState(null);
 const [loadingAll, setLoadingAll] = useState(false);
-const [moisAll, setMoisAll] = useState(7);
+const [moisAll, setMoisAll] = useState(new Date().getMonth() + 1);
 const [anneeAll, setAnneeAll] = useState(2025);
 const [openMatriculeDialog, setOpenMatriculeDialog] = useState(false);
 const [selectedMatricule, setSelectedMatricule] = useState(null);
@@ -106,6 +106,7 @@ const [anchorEl, setAnchorEl] = React.useState(null);
 // Et dans le useEffect
 useEffect(() => {
   if (matriculeTransmis) {
+
     const matriculeObj = typeof matriculeTransmis === 'string'
       ? { matricule: matriculeTransmis }
       : matriculeTransmis;
@@ -135,9 +136,6 @@ const filteredPersonnels = personnels.filter(p => {
   );
 });
 
-
-
-
   const fetchWithAuth = async (url, options = {}) => {
     const response = await fetch(url, {
       credentials: 'include',
@@ -159,7 +157,7 @@ const filteredPersonnels = personnels.filter(p => {
 
 useEffect(() => {
     console.log('Fetch avec selectedDivision:', selectedDivision, moisAll, anneeAll);
-
+ console.log("Mois :" , selectedDate)
   const fetchData = async () => {
     setLoading(true);
     try {
@@ -182,6 +180,7 @@ useEffect(() => {
 }, [selectedDivision, moisAll, anneeAll]);
 
 useEffect(() => {
+  console.log("Mois"  , moisAll)
   if (anchorEl) {
     setLoading(true);
     fetchWithAuth(`http://localhost:5000/api/fiches_assiduite/all?mois=${moisAll}&annee=${anneeAll}`)
@@ -841,7 +840,7 @@ fontSize : 16,color :"black"
     
       </div>
           <div className={styles.searchB}>
-            <input type="text" placeholder='Recherccher ...' 
+            <input type="text" placeholder='Rechercher ...' 
               value={searchText}
   onChange={e => setSearchText(e.target.value)}/>
             <i className="fa-solid fa-magnifying-glass"></i>

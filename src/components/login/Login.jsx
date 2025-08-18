@@ -27,8 +27,18 @@ const [nom, setNom] = useState("");
 const [submitted, setSubmitted] = useState(false);
 const [submittedMdp, setSubmittedMdp] = useState(false);
 const [loginError, setLoginError] = useState(""); // Pour stocker le message d'erreur
-
+ const [hovered, setHovered] = useState(false);
+const [pageLoading, setPageLoading] = useState(true);
 const navigation=useNavigate()
+
+useEffect(() => {
+  // Simuler le temps de chargement de la page (ou attendre tes données)
+  const timer = setTimeout(() => {
+    setPageLoading(false);
+  }, 1500); // 1,5s ou le temps nécessaire
+
+  return () => clearTimeout(timer);
+}, []);
 
 useEffect(() => {
   document.body.style.background = `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(${bgImage}) no-repeat center center fixed `;
@@ -202,27 +212,31 @@ const goPointage = async () => {
      />
               </Box>
 
-       <div className={styles.oublie}>
+       <div className={styles.oublie} onClick={()=> navigation("/oublie")}>
    <p>Mot de passe oubié ?
    </p>
     </div>
     <div className={styles.btn}>
-   <Button variant="outlined"   sx={{
-                width: "100%",
-                backgroundColor: "rgb(51, 94, 143)",
-                color: "white",
-                fontWeight: "bold",
-                fontSize: 18,
-                paddingY: 1.5,
-                borderRadius: "8px",
-                border : "none" ,
-                textTransform: "none",
-                "&:hover": {
-                  backgroundColor: "rgb(44, 81, 122)",
-                }
-
-
-              }}
+   <Button variant="outlined" 
+    sx={{
+        width: "100%",
+        backgroundColor: "rgb(51, 94, 143)",
+        color: "white",
+        fontWeight: "bold",
+        fontSize: 18,
+        paddingY: 1.5,
+        borderRadius: "8px",
+        border: "none",
+        textTransform: "none",
+        boxShadow: hovered
+          ? "0 4px 20px rgba(51, 94, 143, 0.6)" // shadow quand survol
+          : "0 2px 5px rgba(0,0,0,0.2)", // shadow normal
+        transform: hovered ? "scale(1.05)" : "scale(1)", // léger zoom au hover
+        transition: "all 0.3s ease",
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+  
               onClick={goPointage} >
                   {loading ? <Spin size="large" /> : "Se connecter"}
 
@@ -231,6 +245,7 @@ const goPointage = async () => {
       </div>  
     
     </div>
+  
  </div>
 
 </div>
