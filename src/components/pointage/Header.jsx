@@ -1,4 +1,4 @@
-import React, { useState ,useEffect } from 'react'
+import React, { useState ,useEffect, useContext } from 'react'
 import styles from './header.module.css'
 import Logo from '../../assets/finances.png';
 import Avatar from '@mui/material/Avatar';
@@ -20,6 +20,11 @@ import { useNavigate
 
  } from 'react-router-dom';
 import DarkModeSwitch from './DarkModeSwitch';
+import { AuthContext } from '../../AuthContext';
+
+
+
+
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
     backgroundColor: '#44b700',
@@ -111,6 +116,8 @@ const [menuAnchorEl, setMenuAnchorEl] = useState(null);
 const [openConfirmLogout, setOpenConfirmLogout] = useState(false);
 const [admin, setAdmin] = useState(null);
 const [darkMode, setDarkMode] = useState(false);
+const { logout } = useContext(AuthContext);
+
 
 useEffect(() => {
   document.body.classList.toggle("dark-mode", darkMode);
@@ -146,12 +153,7 @@ const handleMenuClose = () => {
 };
 
 const handleLogout = async () => {
-  await fetch("http://localhost:5000/api/auth/logout", {
-    method: "POST",
-    credentials: "include",
-  });
-  localStorage.removeItem("isLoggedIn");
-  navigate("/login");
+   logout()
 };
 
 

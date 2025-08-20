@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from './login.module.css';
 import Logo from '../../assets/finances.png';
 import Logo1 from '../../assets/v1.jpg';
@@ -19,6 +19,8 @@ import { Spin } from 'antd';
 import {useNavigate} from "react-router-dom"
 import bgImage from '../../assets/v2.jpg';
 import Alert from '@mui/material/Alert';
+import { AuthContext } from '../../AuthContext';
+
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -30,6 +32,8 @@ const [loginError, setLoginError] = useState(""); // Pour stocker le message d'e
  const [hovered, setHovered] = useState(false);
 const [pageLoading, setPageLoading] = useState(true);
 const navigation=useNavigate()
+  const [role, setRole] = useState("admin"); 
+const { login } = useContext(AuthContext);
 
 useEffect(() => {
   // Simuler le temps de chargement de la page (ou attendre tes données)
@@ -77,37 +81,41 @@ const goPointage = async () => {
     return;
   }
 
- try {
-  const response = await fetch("http://localhost:5000/api/auth/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-    body: JSON.stringify({
-      matricule: nom,
-      mot_de_passe: mdp,
-    }),
-  });
+  try {
+    const response = await fetch("http://localhost:5000/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include", // très important pour session Flask
+      body: JSON.stringify({
+        matricule: nom,
+        mot_de_passe: mdp, // ⚡ adapté pour la route connexion
+      }),
+    });
 
-  const data = await response.json();
+    const data = await response.json();
 
   if (response.ok) {
-    localStorage.setItem("isLoggedIn", "true");
-    setLoginError(""); // Réinitialiser en cas de succès
-    navigation("/global");
-  } else {
-    console.error("Erreur de connexion :", data.error);
-    setLoginError(data.error || "Identifiants invalides");
-  }
-} catch (error) {
-  console.error("Erreur réseau :", error);
-  setLoginError("Erreur réseau ou serveur.");
-}
- finally {
+      const userData = data.client || data.admin;
+
+      // ⚡ Mise à jour du context
+      login(userData);
+
+      setLoginError(""); 
+      navigation("/global"); // redirection vers les routes privées
+    } else {
+      console.error("Erreur de connexion :", data.message || data.error);
+      setLoginError(data.message || data.error || "Identifiants invalides");
+    }
+  } catch (error) {
+    console.error("Erreur réseau :", error);
+    setLoginError("Erreur réseau ou serveur.");
+  } finally {
     setLoading(false);
   }
 };
+
 
 
   return (
