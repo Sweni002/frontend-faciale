@@ -332,7 +332,7 @@ useEffect(() => {
           setPersonnels([]);
           return;
         }
-
+console.log("backend :" ,response)
         const result = pointages.map(p => {
           const pers = p.personnel || {};
           const division = pers.division || {};
@@ -365,7 +365,7 @@ useEffect(() => {
             justificatif: p.justificatif || null,
           };
         });
-
+console.log("resut :" ,result)
         setPersonnels(result);
       })
       .catch(() => setPersonnels([]))
@@ -417,7 +417,7 @@ console.log(data.map(d => d.personnel?.division?.iddiv));
       absence_soir: p.absence_soir,
       justificatif: p.justificatif || null,
     }));
-   
+
     setPersonnels(result);
     setFilteredByDatePersonnels(result);
 
@@ -634,8 +634,8 @@ const exportPDF = async () => {
   };
 const columns = [
 
-,
-,
+
+
   {
     title: 'Matricule',
     dataIndex: 'matricule',
@@ -939,10 +939,13 @@ const columns = [
           disabled={!dateDebutFiltre && !dateFinFiltre}
   style={{ cursor: (!dateDebutFiltre || !dateFinFiltre) ? 'not-allowed' : 'pointer', opacity: (!dateDebutFiltre || !dateFinFiltre) ? 0.5 : 1 }}
 >
+
      {loadingPdf ? <Spin size="small" /> : (
     <div className={styles.btn10}>
-      <span>Exporter en PDF</span>
+        <span>Exporter en PDF</span>
+          
       <i className="fa-solid fa-download"></i>
+    
     </div>
   )}         
         </button>
@@ -969,8 +972,10 @@ const columns = [
       ? dayjs(selectedDate).format('DD/MM/YYYY')
       : 'Filtrer par date'}
   </label>
+    <IconButton size='large'>
+  
    <i class="fa-regular fa-calendar-days"></i>
-   
+   </IconButton>
    <input
     type="date"
     ref={dateInputRef}
@@ -997,10 +1002,13 @@ const columns = [
     onClick={exportPDF}
     aria-label="Exporter en PDF"
   >
+      <IconButton size='large'>
+  
        {loadingPdf1 ? <Spin size="small" /> : (
      <i className="fa-solid fa-file-export"></i>
 
   )} 
+  </IconButton>
     </div>
 </Tooltip>
 

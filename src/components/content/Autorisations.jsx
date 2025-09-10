@@ -17,6 +17,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
+import { Tooltip } from 'antd';
 import Typography from '@mui/material/Typography';
 import { styled } from "@mui/material/styles";
 import { Spin } from "antd";
@@ -97,6 +98,7 @@ const filteredConges = conges.filter(c => {
 
   return matchesSearch && c.iddiv === selectedDivision;
 });
+
 
   const fetchWithAuth = async (url, options = {}) => {
     const response = await fetch(url, {
@@ -282,6 +284,28 @@ const columns = [
       </div>
     ),
   },
+ {
+  title: (
+    <div style={{ textAlign: "center", width: "100%" }}>
+      Types
+    </div>
+  ),
+  dataIndex: 'nomtype',
+  key: 'nomtyp',
+  render: text => <strong>{text || '-'}</strong>, // 🔹 texte en gras
+  align: 'center',
+},
+ {
+  title: (
+    <div style={{ textAlign: "center", width: "100%" }}>
+      Journée
+    </div>
+  ),
+  dataIndex: 'demi_journee',
+  key: 'demi_journee',
+  render: text => <strong>{text || '-'}</strong>, // 🔹 texte en gras
+  align: 'center',
+},
   {
     title: (
       <div style={{ textAlign: "center", width: "100%" }}>
@@ -301,6 +325,7 @@ const columns = [
     align: 'center',
     render: text => text ? new Date(text).toLocaleDateString() : '-',
   },
+
  {
   title: 'État',
   dataIndex: 'etat',
@@ -350,19 +375,31 @@ const columns = [
     key: 'actions',
     render: (_, record) => (
       <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+       <Tooltip title='Modifier'  >
+
         <div
           className={styles.iconCircle}
           onClick={() => navigate('/global/modifier_auto', { state: { record } })}
         >
+          
+    
           <EditOutlined style={{ color: '#1B6979', fontSize: 20 }} />
+              
         </div>
+          </Tooltip>
+<Tooltip title='Supprimer'  >
+
         <div
           className={styles.iconCircle}
           onClick={() => handleDeleteClick(record)}
           style={{ cursor: 'pointer', color: '#ff4d4f', fontSize: 18 }}
         >
+            
+    
           <i className="fa-regular fa-trash-can"></i>
+      
         </div>
+            </Tooltip>
       </div>
     ),
   }
@@ -385,11 +422,11 @@ const columns = [
         <Breadcrumb
           style={{ fontSize: 19, fontWeight: "bold" }}
           items={[
-            { title: <a href="/global/autorisation" style={{ fontSize: 18 }}>Autorisations</a> },
+            { title: <a href="/global/autorisation" style={{ fontSize: 18 }}>Absence</a> },
             { title: <a href="" style={{ fontSize: 18}}></a> }
           ]}
         />
-        <div className={styles.listes}><h1>Liste d'autorisations</h1></div>
+        <div className={styles.listes}><h1>Liste d'absence</h1></div>
       
        </div>
 <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={frLocale}>
@@ -467,12 +504,15 @@ const columns = [
       <div className={styles.cardTab}>
         <div className={styles.searchBar}>
             <div className={styles.flexible}>
-          <button onClick={goAjout}>
+            <div className={styles.bbt}>
+               <button onClick={goAjout}>
             <div className={styles.jk} style={{ display: "flex", alignItems: "center", gap: 10, color: "white", fontWeight: "bold", fontSize: 19 }}>
               <i className="fa-solid fa-plus"></i><span>Ajouter</span>
             </div>
           </button>
-              <div className={styles.debuts}    onClick={() => {
+       
+              </div>    
+                <div className={styles.debuts}    onClick={() => {
                   
               if (dateInputRef.current) {
                 dateInputRef.current.showPicker(); // ← c’est le bon appel natif
@@ -484,8 +524,10 @@ const columns = [
                 ? dayjs(selectedDate).format('DD/MM/YYYY')
                 : 'Filtrer par date'}
             </label>
+              <IconButton size='large'>
              <i class="fa-regular fa-calendar-days" style={{  color: '#14535f' ,
     fontSize: 22}}></i>
+    </IconButton>
             <input
   type="date"
   ref={dateInputRef}

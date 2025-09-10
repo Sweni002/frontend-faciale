@@ -102,6 +102,7 @@ align-items: center;
 .oublie  p{
  font-size: 18px;
  color: rgb(59, 130, 211);
+ 
 }
 
 .oublie p:hover {
@@ -119,10 +120,35 @@ align-items: center;
   cursor: pointer;
 }
 
+
+.scan  p{
+ font-size: 18px;
+ color: rgb(59, 130, 211);
+ font-weight: bold;
+ 
+}
+
+.scan p:hover {
+  color :#1b6979;
+  text-decoration: underline;
+  
+}
+.scan {
+    margin-right: 10px;
+
+  text-align: center;
+  margin-top: 22px;
+  cursor: pointer;
+}
 .btn {
     width: 100%;
     margin-top: 30px;
 }
+.btn6 {
+    width: 100%;
+    margin-top: 30px;
+}
+
 
 .imgAcc {
     position: relative;

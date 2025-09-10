@@ -19,6 +19,7 @@ import SnackbarContent from '@mui/material/SnackbarContent';
  import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { Spin } from "antd";
 import { Checkbox, FormControlLabel } from '@mui/material';
+import { Select, MenuItem, FormControl, InputLabel,Menu } from '@mui/material';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiPaper-root": {
@@ -53,14 +54,25 @@ const [searchMatricule, setSearchMatricule] = useState("");
 const [personnels, setPersonnels] = useState([]);
 const [errorMsg, setErrorMsg] = useState(null);
 const [snackMessage, setSnackMessage] = useState(""); // état pour le message
-
+const [selectedType, setSelectedType] = useState(null);
+const [anchorElType, setAnchorElType] = useState(null);
+const openType = Boolean(anchorElType);
 const [isSuccess, setIsSuccess] = useState(false);
 const [searchPers, setSearchPers] = useState("");
 const [selectedPers, setSelectedPers] = useState(null);
 const [isOneDayAbsence, setIsOneDayAbsence] = useState(true);
+const [types, setTypes] = useState([]);
+const typeDivRef = useRef(null);
+const [typeTouched, setTypeTouched] = useState(false);
+const [demiJournee, setDemiJournee] = useState("complete"); // ← valeur par défaut
+ // 'matin', 'apres-midi' ou ''
+const selectRef = useRef(null);
+const [openSelect, setOpenSelect] = useState(false);
 
 const [errors, setErrors] = useState({
   matricule: false,
+  demiJournee :false ,
+  type :false ,
   motif: false,
   dateDebut: false,
   dateFin: false,
@@ -70,8 +82,10 @@ const [errors, setErrors] = useState({
 // validation simple au clic sur Sauvegarder
 const validateForm = () => {
   const newErrors = {
-    matricule: !selectedMatricule,  // <-- ici
+    matricule: !selectedMatricule, 
+     type: !selectedType, // <-- ici
     motif: !motif.trim(),
+    demiJournee :  !isOneDayAbsence &&  !demiJournee.trim() ,
       dateDebut: !dateDebut.trim(),
       dateFin: !isOneDayAbsence && !dateFin.trim(),
   };
@@ -185,6 +199,21 @@ useEffect(() => {
 }, [openMatriculeDialog]); // ✅ recharger uniquement à l'ouverture du dialog
 
 
+    useEffect(() => {
+    const fetchTypes = async () => {
+      try {
+        const data = await fetchWithAuth('http://localhost:5000/api/types');
+        setTypes(data); // supposé retourner [{idtype, nomtype}, ...]
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchTypes();
+  }, []);
+
  useEffect(() => {
    fetch('http://localhost:5000/api/divisions/with_count', {
      credentials: "include", // si besoin pour les cookies de session
@@ -212,7 +241,19 @@ useEffect(() => {
  const filteredDivisions = divisions.filter((div) =>
     div.nomdivision.toLowerCase().includes(search.toLowerCase())
   );
-
+const CustomSelectIcon = () => (
+  <IconButton
+    aria-label="more"
+    size="large"
+    onClick={() => setOpenSelect(true)} // ouvre le Select
+    style={{ cursor: "pointer" }}
+  >
+    <i
+      className="fa-solid fa-chevron-down"
+      style={{ color: "#1B6979", fontSize: "15px" }}
+    ></i>
+  </IconButton>
+);
 
   const goBack = () => {
     navigate(-1);
@@ -244,14 +285,16 @@ const createAutorisation = async () => {
     return;
   }
 
-  // Construction de l'objet à envoyer à l'API
-  const formData = {
-    idpers: selectedMatricule.idpers,
-    motif,
-    date_debut: dateDebut,
-    date_fin: isOneDayAbsence ? dateDebut : dateFin, // 🔁 clé ici
-  };
+const formData = {
+  idpers: selectedMatricule.idpers,
+  motif,
+  type: selectedType.idtype,
+  date_debut: dateDebut,
+  date_fin: isOneDayAbsence ? dateDebut : dateFin,
+ demi_journee: isOneDayAbsence ? (demiJournee || "complete") : "complete", // ← toujours défini
+};
 
+console.log("donnee envoyer :" , formData)
   try {
     const data = await fetchWithAuth('http://localhost:5000/api/autorisations', {
       method: 'POST',
@@ -269,6 +312,9 @@ const createAutorisation = async () => {
     setMotif('');
     setDateDebut('');
     setDateFin('');
+       setSelectedType(null); 
+       setDemiJournee("")// ← réinitialise le type
+
   } catch (error) {
     setSnackMessage("Erreur lors de l'ajout : " + error.message);
     setIsSuccess(false);
@@ -290,7 +336,7 @@ const createAutorisation = async () => {
             {
               title: (
                 <a href="/global/autorisation" style={{ fontSize: 17 }}>
-                  Autorisation
+                  Absence
                 </a>
               ),
             },
@@ -304,7 +350,7 @@ const createAutorisation = async () => {
           ]}
         />
         <div className={styles.listes}>
-          <h1>Ajout  autorisation</h1>
+          <h1>Ajout  absence</h1>
         </div>
       </div>
 
@@ -315,7 +361,7 @@ const createAutorisation = async () => {
                         aria-label="more"
                         id="long-button"
                              aria-haspopup="true"
-                        size="small"
+                        size="large"
                       >
                                 <i className="fa-solid fa-arrow-left"></i>
   
@@ -341,7 +387,14 @@ const createAutorisation = async () => {
                     ? `${selectedMatricule.matricule} - ${selectedMatricule.nom}`
                     : "Sélectionner un employé"}
                 </p>
+                  <IconButton
+                        aria-label="more"
+                        id="long-button"
+                             aria-haspopup="true"
+                        size="large"
+                      >
                 <i className="fa-solid fa-chevron-down"></i>
+                </IconButton>
               </div>
 
               {errors.matricule && (
@@ -350,6 +403,65 @@ const createAutorisation = async () => {
                 </small>
               )}
             </div>
+ <Menu
+  anchorEl={anchorElType}
+  open={openType}
+  onClose={() => setAnchorElType(null)}
+  PaperProps={{
+    style: {
+      minWidth: typeDivRef.current ? typeDivRef.current.offsetWidth : 200,
+    },
+  }}
+>
+  {types.map((t) => (
+    <MenuItem
+      key={t.idtype}
+      onClick={() => {
+        setSelectedType(t);
+        setAnchorElType(null);
+         setErrors(prev => ({ ...prev, type: false })); // ← important
+
+      }}
+    >
+      {t.nomtype}
+    </MenuItem>
+  ))}
+</Menu>
+
+
+<div
+  className={styles.inputDiv}
+  ref={typeDivRef}
+  onClick={(e) => {
+    setAnchorElType(e.currentTarget);
+    setTypeTouched(true); // ✅ l'utilisateur a interagi
+  }}
+>
+
+  <label htmlFor="type">Type</label>
+
+  <div className={`${styles.section} ${errors.type ? styles.errorBorder : ''}`}>
+    <p
+      className={selectedType ? styles.selectedDivisionText : styles.placeholderText}
+      title={selectedType ? selectedType.nomtype : "Sélectionner un type"}
+    >
+      {selectedType ? selectedType.nomtype : "Sélectionner un type"}
+    </p>
+    <IconButton aria-label="more" size="large">
+      <i className="fa-solid fa-chevron-down"></i>
+    </IconButton>
+  </div>
+
+ {errors.type && (
+  <small style={{ color: "red", fontSize: "13px", marginTop: 5 }}>
+    Veuillez sélectionner un type.
+  </small>
+)}
+
+
+</div>
+
+
 
 {/* Motif */}
 <div className={styles.inputMotif}>
@@ -442,7 +554,35 @@ const createAutorisation = async () => {
       )}
     </div>
   )}
+  {isOneDayAbsence && (
+  <div className={styles.dateField}>
+    
+    <label htmlFor="demiJournee">Demi-journée</label>
+ 
+<Select
+  ref={selectRef}
+  value={demiJournee}
+  onChange={(e) => setDemiJournee(e.target.value)}
+  displayEmpty
+  IconComponent={CustomSelectIcon}
+  className={errors.demiJournee ? styles.errorBorder : ''} 
+  open={openSelect}
+  onClose={() => setOpenSelect(false)}
+>
+  <MenuItem value="complete">Absence complète</MenuItem> {/* valeur par défaut */}
+  <MenuItem value="matin">Matin</MenuItem>
+  <MenuItem value="apres-midi">Après-midi</MenuItem>
+</Select>
+
+    {errors.demiJournee && (
+      <small style={{ color: "red", fontSize: "13px", marginTop: 5 }}>
+        Veuillez sélectionner une demi-journée.
+      </small>
+    )}
+  </div>
+)}
 </div>
+
 
 
 

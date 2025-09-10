@@ -339,7 +339,7 @@ const handleFileChange = (e) => {
                         aria-label="more"
                         id="long-button"
                              aria-haspopup="true"
-                        size="small"
+                        size="large"
                       >
                                 <i className="fa-solid fa-arrow-left"></i>
   
@@ -432,8 +432,14 @@ const handleFileChange = (e) => {
     >
       {selectedDivision ? selectedDivision.nomdivision : "Selectionner une division"}
     </p>
+       <IconButton
+                        aria-label="more"
+                        id="long-button"
+                             aria-haspopup="true"
+                        size="large"
+                      >
     <i className="fa-solid fa-chevron-down"></i>
-    
+    </IconButton>
   </div>
     {errors.division && <small style={{ color: "red", fontSize: "13px"  
       ,marginTop : 5

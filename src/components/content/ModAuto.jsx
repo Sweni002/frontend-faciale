@@ -19,6 +19,8 @@ import SnackbarContent from '@mui/material/SnackbarContent';
  import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { Spin } from "antd";
 import { Checkbox, FormControlLabel } from '@mui/material';
+import { Select, MenuItem, FormControl, InputLabel,Menu } from '@mui/material';
+
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiPaper-root": {
@@ -57,12 +59,23 @@ const   [idPointage ,setId]=useState('')
 const [isSuccess, setIsSuccess] = useState(false);
 const [searchPers, setSearchPers] = useState("");
 const [selectedPers, setSelectedPers] = useState(null);
-
+const [types, setTypes] = useState([]);
+const typeDivRef = useRef(null);
+const [typeTouched, setTypeTouched] = useState(false);
+const [selectedType, setSelectedType] = useState(null);
 const [isOneDayAbsence, setIsOneDayAbsence] = useState(true);
+const [anchorElType, setAnchorElType] = useState(null);
+const openType = Boolean(anchorElType);
+const [demiJournee, setDemiJournee] = useState("complete"); // ← valeur par défaut
+ // 'matin', 'apres-midi' ou ''
+const selectRef = useRef(null);
+const [openSelect, setOpenSelect] = useState(false);
 
 const [errors, setErrors] = useState({
   matricule: false,
+  type :false ,
   motif: false,
+    demi_journee :false ,
   dateDebut: false,
   dateFin: false,
   // autres champs...
@@ -84,12 +97,18 @@ useEffect(() => {
     console.log(record)
     setId(record.id || '');
     setMotif(record.motif || '');
-    
+    setSelectedType({
+      idtype :record.idtype ,
+      nomtype :record.nomtype
+    })
+    setDemiJournee(record.demi_journee || "complete") ;
+    console.log("demi_journee :" ,record.demi_journee)
     // Gère les deux cas : un jour ou plusieurs jours
     if (record.date_absence) {
       setDateDebut(record.date_absence.split('T')[0]);
       setDateFin(record.date_absence.split('T')[0]);
       setIsOneDayAbsence(true);
+      
     } else {
       setDateDebut(record.date_debut ? record.date_debut.split('T')[0] : '');
       setDateFin(record.date_fin ? record.date_fin.split('T')[0] : '');
@@ -106,70 +125,54 @@ useEffect(() => {
 }, [record]);
 
   // Le reste du formulaire : champs liés à `formData`, bouton enregistrer, etc.
+const CustomSelectIcon = () => (
+  <IconButton
+    aria-label="more"
+    size="large"
+    onClick={() => setOpenSelect(true)} // ouvre le Select
+    style={{ cursor: "pointer" }}
+  >
+    <i
+      className="fa-solid fa-chevron-down"
+      style={{ color: "#1B6979", fontSize: "15px" }}
+    ></i>
+  </IconButton>
+);
 
 const validateForm = () => {
-  const newErrors = {
-    matricule: !selectedMatricule,  // <-- ici
-    motif: !motif.trim(),
-      dateDebut: !dateDebut.trim(),
-      dateFin: !isOneDayAbsence && !dateFin.trim(),
-  };
+  console.log({selectedMatricule , demiJournee , motif ,selectedType , dateDebut})
+const newErrors = {
+  matricule: !selectedMatricule,
+  motif: !motif.trim(),
+  type: !selectedType,
+  demi_journee: isOneDayAbsence && !demiJournee, // ← seulement si un jour
+  dateDebut: !dateDebut.trim(),
+  dateFin: !isOneDayAbsence && !dateFin.trim(),
+};
+
   setErrors(newErrors);
   return !Object.values(newErrors).some(Boolean);
 };
 
+  useEffect(() => {
+    const fetchTypes = async () => {
+      try {
+        const data = await fetchWithAuth('http://localhost:5000/api/types');
+        setTypes(data); // supposé retourner [{idtype, nomtype}, ...]
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchTypes();
+  }, []);
+
  const  chargerLoading= () => {
   setLoading(true);
 };
-const handleCreatePersonnel = async () => {
-  setLoading(true);
 
-  const formData = {
-    matricule,
-    nom,
-    prenom,
-    email: "", // si tu ne l'utilises pas pour l’instant
-    numtel: tel,
-    iddiv: selectedDivision.iddiv,
-    image: selectedImageURL // en base64
-  };
-
-  try {
-    const response = await fetch("http://localhost:5000/api/personnels/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      credentials: "include",
-      body: JSON.stringify(formData)
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      alert("Erreur : " + (data.error || "Erreur inconnue"));
-      setLoading(false);
-      return;
-    }
-
-    setOpenSnack(true);
-    setLoading(false);
-
-    // Optionnel : vider les champs
-    setMatricule("");
-    setNom("");
-    setPrenom("");
-    setTel("");
-    setSelectedDivision(null);
-    setSelectedImage(null);
-    setSelectedImageURL(null);
-
-  } catch (error) {
-    console.error("Erreur d'ajout :", error);
-    alert("Une erreur est survenue lors de l'ajout.");
-    setLoading(false);
-  }
-};
 
  const fetchWithAuth = async (url, options = {}) => {
     const response = await fetch(url, {
@@ -335,10 +338,13 @@ const updateAutorisation = async () => {
   const formData = {
     idpers: selectedMatricule.idpers,
     motif,
+     idtype : selectedType.idtype ,
     date_debut: dateDebut,
     date_fin: isOneDayAbsence ? dateDebut : dateFin,
-  };
+    demi_journee: isOneDayAbsence ? (demiJournee || "complete") : "complete", // ← toujours défini
 
+  };
+console.log("donne :" ,formData)
   try {
     const data = await fetchWithAuth(`http://localhost:5000/api/autorisations/${record.id}`, {
       method: 'PUT',
@@ -356,6 +362,10 @@ const updateAutorisation = async () => {
     setMotif('');
     setDateDebut('');
     setDateFin('');
+   setSelectedType(null); 
+       setDemiJournee("complete")// ← réinitialise le type
+
+
 
     sessionStorage.setItem('snackMessage', 'Autorisation modifié.');
 sessionStorage.setItem('snackError', 'false');
@@ -406,7 +416,7 @@ sessionStorage.setItem('snackError', 'false');
                         aria-label="more"
                         id="long-button"
                              aria-haspopup="true"
-                        size="small"
+                        size="large"
                       >
                                 <i className="fa-solid fa-arrow-left"></i>
   
@@ -431,8 +441,14 @@ sessionStorage.setItem('snackError', 'false');
                     ? `${selectedMatricule.matricule} - ${selectedMatricule.nom}`
                     : "Sélectionner un employé"}
                 </p>
-                <i className="fa-solid fa-chevron-down"></i>
-              </div>
+               <IconButton
+                                    aria-label="more"
+                                    id="long-button"
+                                         aria-haspopup="true"
+                                    size="large"
+                                  >
+                            <i className="fa-solid fa-chevron-down"></i>
+                            </IconButton>       </div>
 
               {errors.matricule && (
                 <small style={{ color: "red", fontSize: "13px", marginTop: 5 }}>
@@ -440,7 +456,63 @@ sessionStorage.setItem('snackError', 'false');
                 </small>
               )}
             </div>
+ <Menu
+  anchorEl={anchorElType}
+  open={openType}
+  onClose={() => setAnchorElType(null)}
+  PaperProps={{
+    style: {
+      minWidth: typeDivRef.current ? typeDivRef.current.offsetWidth : 200,
+    },
+  }}
+>
+  {types.map((t) => (
+    <MenuItem
+      key={t.idtype}
+      onClick={() => {
+        setSelectedType(t);
+        setAnchorElType(null);
+         setErrors(prev => ({ ...prev, type: false })); // ← important
 
+      }}
+    >
+      {t.nomtype}
+    </MenuItem>
+  ))}
+</Menu>
+
+
+<div
+  className={styles.inputDiv}
+  ref={typeDivRef}
+  onClick={(e) => {
+    setAnchorElType(e.currentTarget);
+    setTypeTouched(true); // ✅ l'utilisateur a interagi
+  }}
+>
+
+  <label htmlFor="type">Type</label>
+
+  <div className={`${styles.section} ${errors.type ? styles.errorBorder : ''}`}>
+    <p
+      className={selectedType ? styles.selectedDivisionText : styles.placeholderText}
+      title={selectedType ? selectedType.nomtype : "Sélectionner un type"}
+    >
+      {selectedType ? selectedType.nomtype : "Sélectionner un type"}
+    </p>
+    <IconButton aria-label="more" size="large">
+      <i className="fa-solid fa-chevron-down"></i>
+    </IconButton>
+  </div>
+
+ {errors.type && (
+  <small style={{ color: "red", fontSize: "13px", marginTop: 5 }}>
+    Veuillez sélectionner un type.
+  </small>
+)}
+
+
+</div>
 {/* Motif */}
 <div className={styles.inputMotif}>
   <label htmlFor="motif">Motif</label>
@@ -528,6 +600,33 @@ sessionStorage.setItem('snackError', 'false');
       {errors.dateFin && (
         <small style={{ color: "red", fontSize: "13px", marginTop: 5 }}>
           La date de fin est requise.
+        </small>
+      )}
+    </div>
+  )}
+    {isOneDayAbsence && (
+    <div className={styles.dateField}>
+      
+      <label htmlFor="demiJournee">Demi-journée</label>
+   
+  <Select
+    ref={selectRef}
+    value={demiJournee}
+    onChange={(e) => setDemiJournee(e.target.value)}
+    displayEmpty
+    IconComponent={CustomSelectIcon}
+    className={errors.demiJournee ? styles.errorBorder : ''} 
+    open={openSelect}
+    onClose={() => setOpenSelect(false)}
+  >
+    <MenuItem value="complete">Absence complète</MenuItem> {/* valeur par défaut */}
+    <MenuItem value="matin">Matin</MenuItem>
+    <MenuItem value="apres-midi">Après-midi</MenuItem>
+  </Select>
+  
+      {errors.demiJournee && (
+        <small style={{ color: "red", fontSize: "13px", marginTop: 5 }}>
+          Veuillez sélectionner une demi-journée.
         </small>
       )}
     </div>

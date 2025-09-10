@@ -16,8 +16,12 @@ import Assiduites from './components/fiches/Assiduites.jsx';
 import Tableau from './components/pointage/Tableau.jsx';
 import Oublier from './components/login/Oublier.jsx';
 import Motdepasse from './components/login/Motdepasse.jsx';
+import Personnels from './components/content/Personnels.jsx'
+import Responsable from './components/content/Responsable.jsx';
+import AjoutRespo from './components/content/AjoutRespo.jsx';
+import ModRespo from './components/content/ModRespo.jsx';
 
-const LazyPersonnels = lazy(() =>
+const LazyFiches = lazy(() =>
   new Promise((resolve) =>
     resolve(import('./components/fiches/Assiduites.jsx'))
   )
@@ -47,11 +51,15 @@ function App() {
             <Route path="ajout_perso" element={<AjoutPerso />} />
             <Route path="modifier_perso" element={<ModPerso />} />
             <Route path="modifier_auto" element={<ModAuto />} />
-            <Route path="personnel" element={<LazyPersonnels />} />
+             <Route path="modifier_respo" element={<ModRespo />} />
+        
+            <Route path="personnel" element={<Personnels />} />
+             <Route path="responsable" element={<Responsable />} />
             <Route path="autorisation" element={<Autorisations />} />
             <Route path="tableau_bord" element={<Tableau />} />
-            <Route path="assiduite" element={<Assiduites />} />
+            <Route path="assiduite" element={<LazyFiches />} />
             <Route path="ajout_auto" element={<AjoutAuto />} />
+ <Route path="ajout_respo" element={<AjoutRespo />} />
 
             {/* Redirection par défaut */}
             <Route index element={<Navigate to="fiche_presence" replace />} />

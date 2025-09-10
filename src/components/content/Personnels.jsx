@@ -20,7 +20,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { styled } from "@mui/material/styles";
 import { Spin } from "antd";
-
+import { Tooltip } from 'antd';
 const ITEM_HEIGHT = 48;
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -273,18 +273,48 @@ const columns = [
     key: 'actions',
     render: (_, record) => (
       <div style={{ display: 'flex', width: "70%", alignItems: "center", justifyContent: "space-between" }}>
+       
+        <Tooltip title='Modifier'  >
+      
         <div className={styles.iconCircle}      onClick={() => navigate('/global/modifier_perso', { state: { record } })}    
           >
+                    
+                
+                          
+              <IconButton
+                                aria-label="more"
+                                id="long-button"
+                                     aria-haspopup="true"
+                                size="small"
+                              >
+
           <EditOutlined
             style={{ color: '#1B6979', fontSize: 20 }}
     />
+    </IconButton>
+         
         </div>
+        </Tooltip>
+          <Tooltip title='Supprimer'  >
+        
+    
         <div className={styles.iconCircle}    onClick={() => handleDeleteClick(record)}>
-          <i
+          
+            <IconButton
+                                aria-label="more"
+                                id="long-button"
+                                     aria-haspopup="true"
+                                size="small"
+                              >
+                              
+                              <i
             className="fa-regular fa-trash-can"
             style={{ color: '#ff4d4f', fontSize: 18, cursor: 'pointer' }}
                 ></i>
+                </IconButton>
+            
         </div>
+            </Tooltip>
         <div className={styles.iconCircles} onClick={(e) => handleMenuClick(e, record)}>
           <IconButton
             aria-label="more"

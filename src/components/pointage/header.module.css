@@ -61,7 +61,7 @@
     height:  95px;
     top : 0 ;
     left: 0;
-    background-color:white;
+    background-color: white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     position: fixed;
   /*  */  z-index: 1000;
@@ -89,10 +89,12 @@
 }
 
 .menu {
+    
     width:  50%;
      padding-left: 30px;
 }
 .menu ul{
+  
  display: flex;
  align-items: center;
  justify-content: space-around;
@@ -100,17 +102,29 @@
 }
 
 .menu ul li{
-    color: rgb(17, 17, 88);
-     font-size: 20px;
+    display: flex;
+    align-items: center;
+justify-content: center;
+    width: 100%;
+    color: #259eb6 ;
+     font-size: 22px;
     cursor: pointer;
      transition:all 1.1 ease;
     font-weight: bold;
+    padding:  15px 10px;
+    
 }
 
+.menu ul li i:hover{
+       color: #259eb6;
+   
+}
 .menu ul li:hover{
-    color: #259eb6;
-   transform: translateY(-2px);
- 
+    color: white;
+   background-color: #409aac; /* hover plus visible */
+    transform: translateY(-3px) scale(1.03); /* effet “lift” et léger zoom */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15); /* ombre pour effet flottant */
+border-radius: 4px;
 }
 
 .icon {
@@ -163,14 +177,14 @@ font-size: 14px;
 
 .nom h3{
     font-size:20px;
-    color: black;
+    color:#1B6979;
       animation: fadeIn 1s ease-in-out;
 
 }
 
 .nom p{
     font-size: 16px;
-    color: #b3afaf;
+    color: black;
 }
 
 
@@ -193,46 +207,66 @@ font-size: 14px;
     justify-content: center;
 }
 
-/* parent qui contient le texte et le dropdown */
 .iconWrapper {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   cursor: pointer;
 }
 
-/* dropdown caché par défaut */
 .dropdown {
-  display: none; /* caché */
+  display: none;
   position: absolute;
-  top: 28px;
-  left: 0;
+  top: 60px; /* ajuste si nécessaire */
+  left:10px;
   background-color: white;
-  padding: 10px 20px 15px 20px;
+  padding: 10px 30px;
   border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
-  min-width: 180px;
-  z-index: 999;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   flex-direction: column;
   gap: 10px;
+  min-width: 300px;
+  z-index: 999;
   animation: fadeIn 0.3s ease-in-out;
 }
 
+/* Affiche le dropdown au hover du parent */
 .iconWrapper:hover .dropdown {
-  display: flex; /* flex-direction: column si tu veux */
+  display: flex;
 }
+
+/* Rotation de l'icône */
+.iconWrapper i {
+    display: inline-block;
+    margin-top: 6px;
+
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Quand le curseur survole le conteneur entier */
+.iconWrapper:hover span,
+.iconWrapper:hover i {
+    color: white !important;  /* applique bleu à tous les enfants */
+    transform: translateY(-1px);
+}
+
+/* Rotation de l'icône si tu veux garder l'effet */
+.iconWrapper:hover i {
+    transform: rotate(180deg);
+}
+
 
 
 
 /* Optionnel : styliser le texte et l'icône */
 .iconWrapper span {
   font-weight: bold;
-  color: rgb(17, 17, 88);
+  color: #259eb6 ;
+
 }
-.iconWrapper span:hover{
-    color: #259eb6 ;
-    transform: translateY(-1px);
-}
+
 .iconWrapper i {
+    color: #259eb6;
   font-size: 14px;
   margin-left: 8px;
   transition: transform 0.3s ease;
@@ -241,10 +275,6 @@ font-size: 14px;
 }
 
 
-/* Pour l'icône qui change de direction */
-.iconWrapper:hover i {
-  transform: rotate(180deg);
-}
 
 
 
@@ -252,8 +282,12 @@ font-size: 14px;
 .dropdown p {
     font-size: 18px;
   margin: 0;
-  padding: 8px 12px;
- color: rgb(17, 17, 88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 15px 20px;
+ color: #259eb6;
     font-weight: 200;
   cursor: pointer;
   white-space: nowrap;
@@ -261,8 +295,12 @@ font-size: 14px;
 }
 
 .dropdown p:hover {
- color: #259eb6;
- transform: translateY(-1px);
+    color: white;
+ background-color: #259eb6; /* hover plus visible */
+    transform: translateY(-3px) scale(1.03); /* effet “lift” et léger zoom */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15); /* ombre pour effet flottant */
+border-radius: 4px;
+
 }
 
 .dialog {
@@ -486,23 +524,12 @@ padding: 10px;
 .nom h3,
 .nom p,
 .icon i {
-    transition: all 0.3s ease-in-out; /* animation douce sur toutes interactions */
+    transition: all 0.2s ease-in-out; /* animation douce sur toutes interactions */
 }
 .menu ul li {
     position: relative;
 }
 
-.menu ul li::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 3px;
-    left: 0;
-    bottom: -38px;
-    background-color: #259eb6;
-    transition: width 0.3s ease;
-}
 
-.menu ul li:hover::after {
-    width: 100%;
-}
+
+

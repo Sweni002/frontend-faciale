@@ -44,10 +44,10 @@ flex-direction: column;
 .btn1{
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    width: 15%;
+    justify-content: center;
+    width: 18%;
     background-color: transparent;
-    padding: 13px;
+    padding: 19px;
     border-radius: 4px;
     cursor: pointer;
      transition: all 0.3s ease-in-out; /* transition fluide pour tous les effets */
@@ -107,7 +107,7 @@ align-items: flex-start;
  box-shadow: 0 2px 2px rgba(0,0,0,0.1);
  overflow: hidden;
 cursor: pointer;
- padding: 17px;
+ padding: 5px;
   
 }
 .iconCircleBtn {
@@ -390,8 +390,8 @@ cursor: pointer;
     width: 200px;
     border-radius: 8px;
      background-color: transparent;
-     padding-left: 18px;
-     padding: 16px;
+     padding-left: 19px;
+     padding: 10px;
      border: 1px solid rgba(0,0,0,0.1);
      cursor: pointer;
 }
@@ -418,8 +418,8 @@ cursor: pointer;
     width: 200px;
     border-radius: 8px;
      background-color: transparent;
-     padding-left: 18px;
-     padding: 16px;
+     padding-left: 19px;
+     padding: 10px;
      border: 1px solid rgba(0,0,0,0.1);
      cursor: pointer;
        animation: fadeIn 1s ease-in-out;
@@ -441,7 +441,7 @@ cursor: pointer;
 
 .matricule i{
     color: #1B6979;
-  font-size: 14px;
+  font-size: 16px;
  
 }
 
@@ -473,8 +473,8 @@ cursor: pointer;
 
 .debut i{
     color: #1B6979;
-  font-size: 14px;
-  margin-left: 12px;
+  font-size: 16px;
+  margin-left: 0px;
 }
 
 .trier {

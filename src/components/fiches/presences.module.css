@@ -1,8 +1,8 @@
 .personnels {
     margin-top: 30px;
-    margin-left: 70px;
- 
-width: 93%;
+    padding-left: 70px;
+ padding-right: 40px;
+width: 100%;
 display: flex;
 flex-direction: column;
 }
@@ -44,10 +44,10 @@ flex-direction: column;
 .btn1{
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    width: 15%;
+    justify-content: center;
+    width: 18%;
     background-color: transparent;
-    padding: 13px;
+    padding: 19px;
     border-radius: 4px;
     cursor: pointer;
      transition: all 0.3s ease-in-out; /* transition fluide pour tous les effets */
@@ -105,7 +105,7 @@ align-items: flex-start;
  box-shadow: 0 2px 2px rgba(0,0,0,0.1);
  overflow: hidden;
 cursor: pointer;
- padding: 16px;
+ padding: 5px;
 }
 
 .pdf:hover{
@@ -272,11 +272,12 @@ gap: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 200px;
+    width: 180px;
     border-radius: 8px;
      background-color: transparent;
-     padding-left: 18px;
-     padding: 16px;
+     padding-left: 20px;
+     padding: 7px;
+     
      border: 1px solid rgba(0,0,0,0.1);
      cursor: pointer;
 }
@@ -290,6 +291,7 @@ gap: 20px;
     letter-spacing: 0.4px;
       animation: fadeIn 1s ease-in-out;
  user-select: none;
+ margin-left: 15px;
 }
 
 .fin{

@@ -34,7 +34,6 @@ import 'dayjs/locale/fr'; // important
 dayjs.locale('fr'); // activer la locale française
 import Popover from '@mui/material/Popover';
 
-
 const ITEM_HEIGHT = 48;
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -186,6 +185,8 @@ useEffect(() => {
     fetchWithAuth(`http://localhost:5000/api/fiches_assiduite/all?mois=${moisAll}&annee=${anneeAll}`)
       .then(data => {
         setPersonnels(Array.isArray(data.data) ? data.data : []);
+           console.log('datae' , data)
+
         setErrorMsg(null);
       })
       .catch(e => setErrorMsg(e.message))
@@ -336,122 +337,7 @@ const columns = [
     align: 'center',
     
   },
-{
-  title: 'Congés',
-    className: styles.borderedLeft,    // <-- Ajout ici
-  
-  children: [
-    {
-      title: 'Nb',
-      dataIndex: ['conges', 'nombre'],
-      align: 'center',
-  className: styles.borderedLeft,    // <-- Ajout ici
 
-    },
-    {
-      title: 'Dates',
-      align: 'center',
-      
-      render: (r) => (
-        <Tooltip title={r.conges?.dates?.join(', ')}>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              maxWidth: 100,
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
-              gap: '2px',
-            }}
-          >
-            {(r.conges?.dates || []).map((date, i) => (
-              <span key={i}>{date}</span>
-            ))}
-          </div>
-        </Tooltip>
-      ),
-    },
-  ],
-},
-{
-  title: 'Repos',
-    className: styles.borderedLeft,    // <-- Ajout ici
-  
-  children: [
-    {
-      title: 'Nb',
-      dataIndex: ['repos', 'nombre'],
-      align: 'center',
-        className: styles.borderedLeft,    // <-- Ajout ici
-      
-    },
-    {
-      title: 'Dates',
-      align: 'center',
-      render: (r) => (
-        <Tooltip title={r.repos?.dates?.join(', ')}>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              maxWidth: 100,
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
-              gap: '2px',
-            }}
-          >
-            {(r.repos?.dates || []).map((date, i) => (
-              <span key={i}>{date}</span>
-            ))}
-          </div>
-        </Tooltip>
-      ),
-    },
-  ],
-},
-{
-  title: 'Missions',
-    className: styles.borderedLeft,    // <-- Ajout ici
-  
-  children: [
-    {
-      title: 'Nb',
-      dataIndex: ['missions', 'nombre'],
-      align: 'center',
-        className: styles.borderedLeft,    // <-- Ajout ici
-      
-    },
-    {
-      title: 'Dates',
-      align: 'center',
-      
-      render: (r) => (
-        <Tooltip title={r.missions?.dates?.join(', ')}>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              maxWidth: 100,
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
-              gap: '2px',
-            }}
-          >
-            {(r.missions?.dates || []).map((date, i) => (
-              <span key={i}>{date}</span>
-            ))}
-          </div>
-        </Tooltip>
-      ),
-    },
-  ],
-},
 {
   title: 'Absences',
     className: styles.borderedLeft,    // <-- Ajout ici
@@ -510,39 +396,7 @@ const columns = [
         </Tooltip>
       ),
     },
-    {
-      title: 'Autres',
-      align: 'center',
-       
-        render: (r) => (
-        <Tooltip
-          title={(r.absences?.autres || [])
-            .map((a) => `${a.date} : ${a.motif}`)
-            .join(', ')}
-        >
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              maxWidth: 100,
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
-              gap: '2px',
-            }}
-          >
-            {(r.absences?.autres || []).length > 0
-              ? r.absences.autres.map((a, i) => (
-                  <span key={i}>
-                    {a.date} : {a.motif}
-                  </span>
-                ))
-              : '—'}
-          </div>
-        </Tooltip>
-      ),
-    },
+  
 
   ],
 },
@@ -693,7 +547,10 @@ const columns = [
         ? dayjs(selectedDate).format('MMMM YYYY') // ✅ novembre 2025
         : 'Filtrer par mois'}
     </label>
+     <IconButton size="large">
+
       <i className="fa-solid fa-chevron-down"></i>
+      </IconButton>
       </div>
 
       <DatePicker
@@ -757,7 +614,11 @@ fontSize : 16,color :"black"
      }}></i>
     </button>
   )}
+  <IconButton  size="large">
+
+ 
   <i className="fa-solid fa-chevron-down"></i>
+   </IconButton>
 </div>
 
 <Popover
@@ -830,9 +691,14 @@ fontSize : 16,color :"black"
     onClick={exportPDF}
     aria-label="Exporter en PDF"
   >
-       {loadingPdf1 ? <Spin size="small" /> : (
+        <IconButton  size="large">
+       {loadingPdf1 ? <Spin size="default" /> : (
+    
+
 <i class="fa-solid fa-download"></i>
+
   )} 
+  </IconButton>
     </div>
 </Tooltip>
 

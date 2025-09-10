@@ -10,7 +10,7 @@ flex-direction: column;
 .break{
     display: flex;
     align-items: center;
-    width: 33%;
+    width: 29%;
       justify-content: space-between;
      
 }
@@ -108,7 +108,7 @@ align-items: flex-start;
     justify-content: space-between;
 }
 
-.searchBar button {
+.bbt button {
   padding: 14px 30px 14px 33px;
   outline: none;
   border: none;
@@ -120,14 +120,14 @@ align-items: flex-start;
 }
 
 /* effet au hover */
-.searchBar button:hover {
+.bbt button:hover {
   background-color: #14535f;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25); /* glow plus marqué */
 }
 
 /* effet de “retour” quand la souris quitte */
-.searchBar button:active,
-.searchBar button:not(:hover) {
+.bbt button:active,
+.bbt button:not(:hover) {
   box-shadow: 0 7px 7px rgba(0,0,0,0.1); /* retourne à l’état normal */
 }
 
@@ -574,11 +574,11 @@ letter-spacing: 0.4px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 200px;
+    width: 210px;
     border-radius: 8px;
      background-color: transparent;
      padding-left: 18px;
-     padding: 16px;
+     padding: 5px;
      border: 1px solid rgba(0,0,0,0.1);
      cursor: pointer;
 }
@@ -588,6 +588,7 @@ letter-spacing: 0.4px;
 }
 .debuts label{
     color:  #676767;
+    margin-left: 10px;
     font-size: 18px;
     letter-spacing: 0.4px;
       animation: fadeIn 1s ease-in-out;
