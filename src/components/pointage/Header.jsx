@@ -223,7 +223,7 @@ const {fetchMe}=useContext(AuthContext)
              style={{ fontSize: 15, marginLeft: 10 }}></i>
           <div className={`${styles.dropdown} ${darkMode ? styles.darkDropdown : ""}`}>
             <p onClick={openPresences} className={darkMode ? styles.darkText : ""}>
-              Fiche de présencesssss
+              Fiche de présences
             </p>
             <p onClick={openAssd} className={darkMode ? styles.darkText : ""}>
               Fiche d'assiduités
